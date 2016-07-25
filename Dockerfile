@@ -46,5 +46,8 @@ RUN google-cloud-sdk/bin/gcloud config set --installation component_manager/disa
 # Changes are lost on a subsequent run.
 RUN sed -i -- 's/\"disable_updater\": false/\"disable_updater\": true/g' /google-cloud-sdk/lib/googlecloudsdk/core/config.json
 
+# Add some volumes
+VOLUME [".kube", ".kubecfg", ".config"]
+
 #
 CMD ["/bin/bash"]
