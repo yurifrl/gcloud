@@ -1,0 +1,11 @@
+#!/bin/sh
+
+docker run --rm -it -w /current \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v $(pwd):/current \
+  -v $HOME/.ssh:/.ssh \
+  -v gcloud-data:/.config \
+  -v gcloud-data:/.kube \
+  -v gcloud-data:/.kubecfg \
+  yurifl/gcloud kubectl $@
+

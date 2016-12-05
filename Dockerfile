@@ -18,7 +18,7 @@ ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
 # Install the Google Cloud SDK.
 ADD $COMPACT_GOOGLE_CLOUD /tmp/google-cloud-sdk.zip
 RUN unzip /tmp/google-cloud-sdk.zip -d / && rm /tmp/google-cloud-sdk.zip
-RUN google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/.bashrc --additional-components app-engine-python app kubectl alpha beta gcd-emulator pubsub-emulator cloud-datastore-emulator app-engine-go bigtable
+RUN google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/.zshrc --additional-components app-engine-python app kubectl alpha beta gcd-emulator pubsub-emulator cloud-datastore-emulator app-engine-go bigtable
 
 # Disable updater check for the whole installation.
 # Users won't be bugged with notifications to update to the latest version of
@@ -44,9 +44,9 @@ RUN chmod +x /bin/docker-machine
 
 # Clean up
 RUN apk del unzip
-RUN apk --update add curl bash bash-completion vim
-RUN echo "source <(kubectl completion bash)" >> /.bashrc
+RUN apk --update add curl vim
+# RUN echo "source <(kubectl completion zsh)" >> /.zshrc
 
-VOLUME ["/.config", "/.kube", "/.kubecfg", "/.ssh"]
+# VOLUME ["/.config", "/.kube", "/.kubecfg", "/.ssh"]
 
-CMD ["/bin/bash"]
+CMD ["/bin/sh"]
