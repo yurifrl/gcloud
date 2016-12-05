@@ -2,10 +2,11 @@
 
 docker run --rm -it -w /current \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  -v $(pwd):/current \
   -v $HOME/.ssh:/.ssh \
+  -v $(pwd):/current \
   -v gcloud-data:/.config \
   -v gcloud-data:/.kube \
   -v gcloud-data:/.kubecfg \
+  --name gcloud \
   yurifl/gcloud gcloud $@
 
