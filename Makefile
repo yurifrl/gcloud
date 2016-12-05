@@ -1,3 +1,3 @@
 all:
-	docker build -t yurifl/gcloud .
+	docker-compose build
 	docker push yurifl/gcloud

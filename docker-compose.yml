@@ -1,0 +1,17 @@
+version: '2'
+services:
+  gcloud:
+    image: yurifl/gcloud
+    build: .
+    working_dir: /current
+    ports:
+      - 80:80
+    volumes:
+      - ./:/current
+      - gcloud-data:/.config
+      - gcloud-data:/.kube
+      - gcloud-data:/.kubecfg
+
+volumes:
+  gcloud-data:
+    external: true
