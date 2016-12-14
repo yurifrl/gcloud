@@ -12,6 +12,8 @@ ENV COMPACT_DOCKER_MACHINE ./vendor/docker-machine-Linux-x86_64
 ENV COMPACT_GOOGLE_CLOUD ./vendor/google-cloud-sdk.zip
 # https://github.com/kubernetes-incubator/kompose
 ENV COMPACT_KOMPOSE ./vendor/kompose_linux-amd64.tar.gz
+# http://readme.drone.io/0.5/install/cli/
+ENV COMPACT_DRONE ./vendor/drone-0.5.0
 
 # ============================================================================
 ENV HOME /
@@ -43,6 +45,9 @@ RUN rm -rf /tmp/docker
 # Download docker machine
 ADD $COMPACT_DOCKER_MACHINE /bin/docker-machine
 RUN chmod +x /bin/docker-machine
+
+# ============================================================================
+RUN cp $COMPACT_DRONE /usr/local/bin
 
 # Clean up
 RUN apk del unzip
