@@ -7,8 +7,8 @@ docker run --rm -it -w /current \
   -v gcloud-data:/.config \
   -v gcloud-data:/.kube \
   -v gcloud-data:/.kubecfg \
-  -p 10443:10443 \
-  -p 10080:10080 \
+  -p 10443:443 \
+  -p 10080:80 \
   --name kubectl \
   yurifl/gcloud kubectl $@
 

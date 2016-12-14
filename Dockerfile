@@ -10,6 +10,8 @@ ENV COMPACT_DOCKER ./vendor/docker-1.12.3.tgz
 ENV COMPACT_DOCKER_MACHINE ./vendor/docker-machine-Linux-x86_64
 # https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.zip
 ENV COMPACT_GOOGLE_CLOUD ./vendor/google-cloud-sdk.zip
+# https://github.com/kubernetes-incubator/kompose
+ENV COMPACT_KOMPOSE ./vendor/kompose_linux-amd64.tar.gz
 
 # ============================================================================
 ENV HOME /
@@ -44,9 +46,10 @@ RUN chmod +x /bin/docker-machine
 
 # Clean up
 RUN apk del unzip
-RUN apk --update add curl vim
-# RUN echo "source <(kubectl completion zsh)" >> /.zshrc
+RUN apk --update add curl vim go git gcc linux-headers wget
 
-# VOLUME ["/.config", "/.kube", "/.kubecfg", "/.ssh"]
+ADD $COMPACT_KOMPOSE /tmp
+RUN mv /tmp/kompose_linux-amd64/kompose /usr/local/bin/kompose
+RUN chmod +x /usr/local/bin/kompose
 
 CMD ["/bin/sh"]
