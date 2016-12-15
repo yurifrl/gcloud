@@ -2,7 +2,7 @@ FROM alpine
 
 RUN apk update
 RUN apk upgrade
-RUN apk --update add unzip python php5-common php5 php5-mysql php5-cli php5-cgi openssh-client openssl ca-certificates
+RUN apk --update add unzip python php5-common php5 php5-mysql php5-cli php5-cgi openssh-client openssl ca-certificates bash
 
 # http://get.docker.com/builds/Linux/x86_64/docker-1.12.3.tgz
 ENV COMPACT_DOCKER ./vendor/docker-1.12.3.tgz
@@ -47,7 +47,7 @@ ADD $COMPACT_DOCKER_MACHINE /bin/docker-machine
 RUN chmod +x /bin/docker-machine
 
 # ============================================================================
-RUN cp $COMPACT_DRONE /usr/local/bin
+COPY $COMPACT_DRONE /usr/local/bin
 
 # Clean up
 RUN apk del unzip
