@@ -16,6 +16,5 @@ docker run --rm -it -w /current \
   -v gcloud-data:/.config \
   -v gcloud-data:/.kube \
   -v gcloud-data:/.kubecfg \
-  -p 8001:8001 \
   yurifl/gcloud $@
 
